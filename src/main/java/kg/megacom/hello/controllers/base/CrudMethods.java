@@ -2,10 +2,7 @@ package kg.megacom.hello.controllers.base;
 
 import kg.megacom.hello.models.Employee;
 import kg.megacom.hello.models.Position;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +14,14 @@ public interface CrudMethods <T>{ //<T> чтобы не привязывать �
     T getById(@PathVariable Long id);
 
     @PostMapping("/save")
-    T save(@RequestBody Position position);
+    T save(@RequestBody T t);
+
+    @PutMapping("/update")
+    T update(@RequestBody T t);
+
+
+    @DeleteMapping("/remove/{id}")
+    T remove(@PathVariable Long id);
 
 
 
