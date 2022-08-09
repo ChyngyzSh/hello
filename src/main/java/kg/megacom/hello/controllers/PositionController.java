@@ -28,6 +28,7 @@ public class PositionController {
     @GetMapping("/id")
     public Position getById(@PathVariable Long id){   // непонятно как работает?
         return new Position(id, "head", true);
+
     }
 
 
