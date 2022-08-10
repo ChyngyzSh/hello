@@ -3,6 +3,9 @@ package kg.megacom.hello.controllers;
 
 import kg.megacom.hello.controllers.base.CrudMethods;
 import kg.megacom.hello.models.Department;
+import kg.megacom.hello.services.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,30 +17,27 @@ import java.util.List;
 public class DepartmentController implements CrudMethods<Department> {
 //CrudMethods<Department> - вместо Т указываем нужный Класс
 
-    @Override
-    public List<Department> findAll() {
-        return Arrays.asList(
-                new Department(1L, "monitoring", true),
-                new Department(2L, "financing", true),
-                new Department(3L, "IT", true)
-        );
-    }
+    @Autowired
+    DepartmentService departmentService;
 
     @Override
+    public List<Department> findAll() {
+        return departmentService.findAll();
+    }
+
+    @GetMapping("/id")
     public Department getById(Long id) {
         return new Department(id, "Accountant", true);
     }
 
     @Override
     public Department save(Department department) {
-        department.setId(101L);
-        return department;
+        return departmentService.save(department);
     }
 
     @Override
     public Department update(Department department) {
-        department.setName("security");
-        return department;
+        return departmentService.save(department);
     }
 
     @Override

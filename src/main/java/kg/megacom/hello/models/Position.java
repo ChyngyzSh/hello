@@ -21,7 +21,7 @@ public class Position {
             @GeneratedValue(strategy = GenerationType.IDENTITY) // автоинкремент
             @Column(name = "position_id")
     Long id;
-    @Column(unique = true,nullable = false, name = "position_name")
+    @Column(unique = true,nullable = false, name = "position_name", length = 100)
     String name;
     boolean active;
 
